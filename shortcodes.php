@@ -25,31 +25,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-add_action('wp_head', function() { echo 'shortcodes, yeah!'; });
-add_action('loop_start', array('IUShortcodes', 'generate_shortcode'));
-// add_shortcode("googlemap", "fn_googleMaps");
+function vimeo_shortcode($atts) {
+	extract(shortcode_atts(array(
+		"width" => '550',
+		"height" => '315',
+		"src" => ''
+	), $atts));
 
-if ( !class_exists('IUShortcodes') ) {
-	/**
-	* IU Shortcodes
-	*/
-	class IUShortcodes {
-		$width = 550;
-		$height = 315;
-		$embed_codes = array(
-			'<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&amp;output=embed" class="googlemap"></iframe><small class="googlemaplink"><a href="'. $src .'" target="_blank" title="View a larger version of this map">View larger map</a></small>', // Google Maps
-			'<iframe src="http://vimeo.com/36684976" width="" height="" frameborder="0"></iframe>'
-		);
-		
-		function generate_shortcode($atts, $content = null) {
-			extract(shortcode_atts(array(
-				"width" => '425',
-				"height" => '550',
-				"src" => ''
-			), $atts));
-
-			return ($src) ? '<iframe width="'.$width.'" height="'.$height.'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'.$src.'&amp;output=embed" class="googlemap"></iframe><small class="googlemaplink"><a href="'. $src .'" target="_blank" title="View a larger version of this map">View larger map</a></small>' : false;
-		}
-	}
+	return '<iframe src="http://player.vimeo.com/video/'.$src.'?color=ffffff" width="'.$width.'" height="'.$height.'" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>';
+	// return '<iframe src="'.$src.'" width="'.$width.'" height="'.$height.'" frameborder="0"></iframe>';
 }
+add_shortcode('vimeo', 'vimeo_shortcode');
 ?>
