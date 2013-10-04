@@ -3,7 +3,7 @@
 Plugin Name: WP Shortcodes
 Plugin URI: https://github.com/patproct/WP-Shortcodes
 Description: This is a simple WordPress plugin with some simple WordPress shortcodes.
-Version: 0.1.1
+Version: 0.1.2
 Author: Patrick Proctor
 Author URI: http://patrickjproctor.com/
 License: GPL2
@@ -25,7 +25,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-$global_width = '550';
+$global_width = '480';
 $global_height = '315';
 $global_src = '';
 $embed_services = array('googlemaps','vimeo','youtube');
@@ -82,6 +82,6 @@ function theme_styles() {
 
 add_action('loop_start', 'print_services');
 add_action('wp_enqueue_scripts', 'theme_styles');
-// add_action('wp_head', function() { echo '<h1>'.get_bloginfo('version').'</h1>'; });
-// add_action('wp_head', function() { echo '<h1>'.wp_version_check().'</h1>'; });
+
+add_shortcode("googlemap", "googlemaps_shortcode");
 ?>
