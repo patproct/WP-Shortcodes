@@ -1,5 +1,6 @@
 # WP-Shortcodes
 **Version 0.1.2**
+
 ---
 
 This is a simple WordPress plugin with some simple shortcodes.
